@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script>
+<!--
+var sObjList = "";
+
+function fn_readonlyAll(sParentName){
+	 view_mode="readonly";
+	 if(document.getElementById) {
+		//var temp = document.getElementsByTagName("input");
+		var oDiv = document.getElementById(sParentName);
+		var temp;
+		 
+		//select
+		temp = oDiv.getElementsByTagName("select");
+		for(i=0;i<temp.length;i++) {
+			if(temp[i].disabled==true) {
+				sObjList += temp[i].name + ',';
+			}
+			temp[i].disabled="disabled";
+		}
+		//input
+		temp = oDiv.getElementsByTagName("input");
+		for(i=0;i<temp.length;i++) {
+			if(temp[i].readOnly==true) {
+				sObjList += temp[i].name + ',';
+			}
+			temp[i].readOnly=true;
+			if(temp[i].type == "checkbox") temp[i].disabled=true;
+			if(temp[i].type == "reset") temp[i].disabled=true;
+			if(temp[i].type == "button") temp[i].disabled=true;
+		}
+		//textarea
+		temp = oDiv.getElementsByTagName("textarea");
+		for(i=0;i<temp.length;i++) {
+			if(temp[i].readOnly==true) {
+				sObjList += temp[i].name + ',';
+			}
+			temp[i].readOnly=true;
+		}
+	 }
+}
+function fn_editAll(sParentName){
+	 view_mode="editable";
+	 if(document.getElementById) {
+		//var temp = document.getElementsByTagName("input");
+		var oDiv = document.getElementById(sParentName);
+		var temp;
+		 
+		//select
+		temp = oDiv.getElementsByTagName("select");
+		for(i=0;i<temp.length;i++) {
+			temp[i].disabled=null;
+		}
+		//input
+		temp = oDiv.getElementsByTagName("input");
+		for(i=0;i<temp.length;i++) {
+			temp[i].readOnly=false;
+			if(temp[i].type == "checkbox") temp[i].disabled=false;
+			if(temp[i].type == "reset") temp[i].disabled=null;
+			if(temp[i].type == "button") temp[i].disabled=null;
+		}
+		//textarea
+		temp = oDiv.getElementsByTagName("textarea");
+		for(i=0;i<temp.length;i++) {
+			temp[i].readOnly=false;
+		}
+		//반드시 readonly인 항목 정하기  <--처음부터 readOnly 인 객체들.
+		temp = sObjList.split(',');
+		for(i=0;i<temp.length;i++) {
+			if(temp[i] != '') {
+				document.all[temp[i]].readOnly=true;
+				document.all[temp[i]].disabled=true;
+				//document.getElementById(temp[i]).readOnly=true;
+			}
+		}
+	 }
+}
+-->
+</script>
+</head>
+
+<body>
+
+<div id="abc">
+<input id="iii1" name="iii1" type="text"/>
+<input id="iii2" name="iii2" type="text"/>
+  <input id="btn0" name="btn0" type="button" value="Button"/>
+  <div id="abc_a">
+  <table><tr><td>
+  <input id="a1" name="a1" type="text"/>
+  <input id="a2" name="a2" type="text"/>
+  <input id="btn1" name="btn1" type="button" value="Button1"/>
+  <input id="btn2" name="btn2" type="button" value="Button2 readonly" readOnly=true disabled=true/>
+  </td></tr></table>
+  </div>
+</div>
+<p/>
+<input type="button" value="ReadOnly All" onclick="fn_readonlyAll('abc_a');"/>
+<input type="button" value="Edit All" onclick="fn_editAll('abc_a');"/>
+<p/>
+<form action="" enctype = "multipart/form-data" method="post" name="login">
+<input type = "file" name = "photo" id = "files" multiple /><br/>
+</form>
+
+
+</body>
+</html>
